@@ -341,12 +341,14 @@ const Location: Template<TemplateRenderProps> = ({
             </div>
             <div className="flex flex-col">
               <div className="flex flex-col gap-2">
-                <div className="flex flex-col">
-                  <div className="text-xl font-medium">Certifications</div>
-                  {certifications.map((item: any, index: any) => (
-                    <div key={index}>{item}</div>
-                  ))}
-                </div>
+                {certifications && (
+                  <div className="flex flex-col">
+                    <div className="text-xl font-medium">Certifications</div>
+                    {certifications.map((item: any, index: any) => (
+                      <div key={index}>{item}</div>
+                    ))}
+                  </div>
+                )}
                 {c_educationDetails && (
                   <div className="flex flex-col">
                     <div className="text-xl font-medium">Degree</div>
