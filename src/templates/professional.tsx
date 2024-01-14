@@ -258,7 +258,7 @@ const Location: Template<TemplateRenderProps> = ({
                     {JSON.stringify(c_officeHours) !== "{}" && (
                       <Hours title={"I'm available on"} hours={c_officeHours} />
                     )}
-                    {JSON.stringify(c_officeHours) !== "{}" &&
+                    {c_officeHours.holidayHours &&
                       c_officeHours.holidayHours.length >= 1 && (
                         <div className="mt-4 text-sm text-[#e46155]">
                           <div className="text-xl font-semibold mb-4">
