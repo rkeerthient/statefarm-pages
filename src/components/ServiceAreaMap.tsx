@@ -25,8 +25,6 @@ type mapProps = {
   states: string[];
 };
 const ServiceAreaMap = ({ states }: mapProps) => {
-  console.log(JSON.stringify(states));
-
   const [stateCodes, setStateCodes] = useState([]);
 
   useEffect(() => {

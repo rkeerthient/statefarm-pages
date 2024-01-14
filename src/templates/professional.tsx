@@ -165,7 +165,6 @@ const Location: Template<TemplateRenderProps> = ({
     certifications,
     c_officeHours,
   } = document;
-  console.log(JSON.stringify(c_officeHours));
   const getType = (item: any) => {
     return item.isClosed
       ? `Closed`
@@ -254,44 +253,47 @@ const Location: Template<TemplateRenderProps> = ({
                     </div>
                   </div>
                 </span>
-                <div className="mt-8">
-                  {c_officeHours && (
-                    <Hours title={"I'm available on"} hours={c_officeHours} />
-                  )}
-                  {c_officeHours.holidayHours.length >= 1 && (
-                    <div className="mt-4 text-sm text-[#e46155]">
-                      <div className="text-xl font-semibold mb-4">
-                        Upcoming Holidays
-                      </div>
-                      <div className="flex flex-col ">
-                        {c_officeHours.holidayHours.map(
-                          (item: any, index: any) => {
-                            let type = getType(item);
+                {c_officeHours && (
+                  <div className="mt-8">
+                    {JSON.stringify(c_officeHours) !== "{}" && (
+                      <Hours title={"I'm available on"} hours={c_officeHours} />
+                    )}
+                    {JSON.stringify(c_officeHours) !== "{}" &&
+                      c_officeHours.holidayHours.length >= 1 && (
+                        <div className="mt-4 text-sm text-[#e46155]">
+                          <div className="text-xl font-semibold mb-4">
+                            Upcoming Holidays
+                          </div>
+                          <div className="flex flex-col ">
+                            {c_officeHours.holidayHours.map(
+                              (item: any, index: any) => {
+                                let type = getType(item);
 
-                            return (
-                              <div
-                                key={index}
-                                className="grid grid-cols-3 gap-2 pr-8"
-                              >
-                                <div>
-                                  {new Date(
-                                    Date.parse(item.date)
-                                  ).toLocaleDateString("en-US")}
-                                </div>
-                                <div>{type}</div>
+                                return (
+                                  <div
+                                    key={index}
+                                    className="grid grid-cols-3 gap-2 pr-8"
+                                  >
+                                    <div>
+                                      {new Date(
+                                        Date.parse(item.date)
+                                      ).toLocaleDateString("en-US")}
+                                    </div>
+                                    <div>{type}</div>
 
-                                <div>
-                                  {item.openIntervals[0].start} -{" "}
-                                  {item.openIntervals[0].end}
-                                </div>
-                              </div>
-                            );
-                          }
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
+                                    <div>
+                                      {item.openIntervals[0].start} -{" "}
+                                      {item.openIntervals[0].end}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </div>
+                        </div>
+                      )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -345,16 +347,18 @@ const Location: Template<TemplateRenderProps> = ({
                     <div key={index}>{item}</div>
                   ))}
                 </div>
-                <div className="flex flex-col">
-                  <div className="text-xl font-medium">Degree</div>
-                  {c_educationDetails.map(
-                    (item: C_educationDetails, index: any) => (
-                      <div key={index}>
-                        {item.degree} - {item.school}
-                      </div>
-                    )
-                  )}
-                </div>
+                {c_educationDetails && (
+                  <div className="flex flex-col">
+                    <div className="text-xl font-medium">Degree</div>
+                    {c_educationDetails.map(
+                      (item: C_educationDetails, index: any) => (
+                        <div key={index}>
+                          {item.degree} - {item.school}
+                        </div>
+                      )
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -382,15 +386,19 @@ const Location: Template<TemplateRenderProps> = ({
           )}
         </div>
         <div className="flex p-8 flex-col gap-8 centered-container mb-4">
-          <div className="flex flex-col gap-2">
-            <div className="font-bold text-lg">More about me</div>
-            <LexicalRichText
-              serializedAST={JSON.stringify(c_fullBiography.json)}
-            />
-          </div>
-          <div>
-            <PhotoCarousel data={photoGallery}></PhotoCarousel>
-          </div>
+          {c_fullBiography && (
+            <div className="flex flex-col gap-2">
+              <div className="font-bold text-lg">More about me</div>
+              <LexicalRichText
+                serializedAST={JSON.stringify(c_fullBiography.json)}
+              />
+            </div>
+          )}
+          {photoGallery && (
+            <div>
+              <PhotoCarousel data={photoGallery}></PhotoCarousel>
+            </div>
+          )}
         </div>
         {c_teamName && c_teamMembers && (
           <div className="my-4 bg-[#f7f0e4]">

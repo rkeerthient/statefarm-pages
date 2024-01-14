@@ -4,8 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Image } from "@yext/pages-components";
 
 export default function InsuranceProductsCarousel({ data }: any) {
-  console.log(JSON.stringify(data));
-
+ 
   const settings = {
     dots: false,
     infinite: false,
