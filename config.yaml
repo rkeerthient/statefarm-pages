@@ -1,0 +1,22 @@
+buildConfiguration:
+  buildCommand: npm run build:local
+  installDependenciesStep:
+    command: npm install
+    requiredFiles:
+      - package.json
+      - package-lock.json
+      - .npmrc
+livePreviewConfiguration:
+  setupCommand: ":"
+# The site stream allows for specification of site entity whose data will be injected to all
+# generation contexts under the `_site` property.
+siteStream:
+  id: site-stream
+  entityId: "8505966723335226201"
+  fields:
+    - name
+    - c_deskHeader
+    - c_deskFooter
+  localization:
+    locales:
+      - en
