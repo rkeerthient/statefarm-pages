@@ -67,6 +67,10 @@ export const config: TemplateConfig = {
       "c_educationDetails.school",
       "c_hobbiesAndInterests",
       "c_officeHours",
+      "c_professionalSecondaryAddress.id",
+      "c_professionalSecondaryAddress.name",
+      "c_professionalSecondaryAddress.primaryPhoto",
+      "c_professionalSecondaryAddress.address",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -165,6 +169,7 @@ const Location: Template<TemplateRenderProps> = ({
     c_hobbiesAndInterests,
     certifications,
     c_officeHours,
+    c_professionalSecondaryAddress,
   } = document;
   const getType = (item: any) => {
     return item.isClosed
@@ -238,7 +243,6 @@ const Location: Template<TemplateRenderProps> = ({
                     `Enter a short bio in the entity`
                   )}
                 </div>
-
                 <div className="py-4 px-16 mx-auto my-auto hidden md:block">
                   {geocodedCoordinate && (
                     <StaticMap
@@ -269,7 +273,7 @@ const Location: Template<TemplateRenderProps> = ({
                     )}
                     {c_officeHours.holidayHours &&
                       c_officeHours.holidayHours.length >= 1 && (
-                        <div className="mt-4 text-sm text-[#e46155]">
+                        <div className="mt-4 text-sm text-[#d62211]">
                           <div className="text-xl font-semibold mb-4">
                             Upcoming Holidays
                           </div>
@@ -310,6 +314,38 @@ const Location: Template<TemplateRenderProps> = ({
             </div>
           </div>
         </div>
+        {c_professionalSecondaryAddress && (
+          <div className="flex-col flex gap-2 centered-container mb-8">
+            <div className="font-medium">My Offices</div>
+            <div className="grid grid-cols-4 gap-4">
+              {c_professionalSecondaryAddress.map((item: any, index: any) => (
+                <div
+                  className="flex flex-col gap-2 shadow-md text-sm"
+                  key={index}
+                >
+                  <Image
+                    image={item.primaryPhoto}
+                    className="!aspect-square"
+                  ></Image>
+                  <div className="mt-2 flex flex-col gap-2 p-2">
+                    <div className="font-medium">{item.name}</div>
+                    <div>
+                      <div>{item.address.line1}</div>
+                      {item.address.line2 && <div>{item.address.line2}</div>}
+                      <div>
+                        {item.address.city}, {item.address.region}{" "}
+                        {item.address.postalCode}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border text-center flex justify-center py-2 px-4 mx-4 bg-[#d62211] text-white hover:cursor-pointer hover:bg-[#f7cbc7] rounded-full mb-4">
+                    Get Directions
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="bg-[#f7f0e4] p-8 mb-4">
           <div className="grid grid-cols-3 centered-container w-2/3 !px-0">
             <div className="flex flex-col gap-4">
