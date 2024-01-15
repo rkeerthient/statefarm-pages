@@ -24,6 +24,7 @@ import {
 import reviews from "../components/reviews.json";
 import ReviewsCarousel from "../components/ReviewsCarousel";
 import { useState } from "react";
+import Banner from "../components/banner";
 export const config: TemplateConfig = {
   stream: {
     $id: "my-stream-id-1",
@@ -196,48 +197,13 @@ const Location: Template<TemplateRenderProps> = ({
       <PageLayout>
         <div className="bg-white w-full mb-4">
           <div>
-            <div className="relative text-center">
-              {c_heroBanner && (
-                <Image
-                  className="!max-w-none"
-                  image={c_heroBanner}
-                  style={{ maxHeight: "470px" }}
-                ></Image>
-              )}
-              <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2	">
-                <div className="text-4xl headColor font-medium h-64">
-                  <div className="flex gap-6">
-                    <div>
-                      {headshot && (
-                        <Image
-                          className="inline-block h-32 !w-32 rounded-full"
-                          image={headshot}
-                        />
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      <div>
-                        {name.includes("-") ? name.split("-")[0] : name}
-                      </div>
-                      <div className="text-3xl">
-                        {name.includes("-")
-                          ? name
-                              .split("-")[1]
-                              .replace("RBC Wealth Management ", "")
-                          : ""}
-                      </div>
-                      <div className="text-2xl">
-                        {mainPhone &&
-                          mainPhone
-                            .replace("+1", "")
-                            .replace(/\D+/g, "")
-                            .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Banner
+              headshot={headshot}
+              img={c_heroBanner.url}
+              name={name}
+              mainPhone={mainPhone}
+              title="STATE FARM® INSURANCE AGENT"
+            ></Banner>
             {c_template !== "TEMPLATE_A" ? (
               <div className="centered-container my-4">
                 <div className="flex w-full gap-8 items-center">
