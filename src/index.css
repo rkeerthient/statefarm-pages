@@ -98,3 +98,14 @@
 .reviews .slick-track {
   @apply !h-[370px] pt-4;
 }
+
+.intentRT ol {
+  @apply !list-decimal mb-4;
+}
+.intentRT ul {
+  @apply !list-disc mb-4;
+}
+
+.intentRT li {
+  @apply !ml-4;
+}

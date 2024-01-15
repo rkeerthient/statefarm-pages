@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="centered-container">
+      <div className=" ">
         <nav className=" flex items-center justify-between">
           <img
             src="https://a.mktgcdn.com/p/rgrJchaykRq9OFDCECGsY-V0eZGrAjJoX49lLOA7ixY/2880x194.png"

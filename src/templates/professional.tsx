@@ -23,6 +23,7 @@ import {
 } from "../types/financial_professionals";
 import reviews from "../components/reviews.json";
 import ReviewsCarousel from "../components/ReviewsCarousel";
+import { useState } from "react";
 export const config: TemplateConfig = {
   stream: {
     $id: "my-stream-id-1",
@@ -71,6 +72,10 @@ export const config: TemplateConfig = {
       "c_professionalSecondaryAddress.name",
       "c_professionalSecondaryAddress.primaryPhoto",
       "c_professionalSecondaryAddress.address",
+      "c_professionalProduct.name",
+      "c_professionalProduct.c_shortDescription",
+      "c_professionalProduct.photoGallery",
+      "c_professionalProduct.slug",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -170,6 +175,7 @@ const Location: Template<TemplateRenderProps> = ({
     certifications,
     c_officeHours,
     c_professionalSecondaryAddress,
+    c_professionalProduct,
   } = document;
   const getType = (item: any) => {
     return item.isClosed
@@ -181,7 +187,7 @@ const Location: Template<TemplateRenderProps> = ({
           ? `Split`
           : `Open`;
   };
-  console.log(c_shortBio);
+  const [openTab, setOpenTab] = useState(0);
 
   return (
     <>
@@ -418,6 +424,56 @@ const Location: Template<TemplateRenderProps> = ({
           <InsuranceProductsCarousel
             data={c_professionalsInsuranceProducts}
           ></InsuranceProductsCarousel>
+        )}
+        {c_professionalProduct && (
+          <div className="px-8  centered-container w-2/3">
+            <div className=" mt-10 mb-10 ">
+              <div className="text-3xl font-light mx-auto text-center headColor">
+                Services
+              </div>
+              <div className="border mt-4">
+                <ul className="flex flex-wrap text-center border-b bg-[#f7cbc7]">
+                  {c_professionalProduct.map((item: any, index: any) => {
+                    return (
+                      <li key={index} className="w-full md:w-auto md:mr-2">
+                        <a
+                          onClick={() => setOpenTab(index)}
+                          className={`${
+                            openTab === index
+                              ? "w-full md:w-auto inline-block p-4 active cursor-pointer bg-[#d62211] text-white"
+                              : "w-full md:w-auto inline-block p-4 active cursor-pointer	text-white"
+                          }`}
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="  p-4 py-6 bg-[#f7f0e4] ">
+                  {c_professionalProduct.map((item: any, index: any) => {
+                    return (
+                      <div
+                        key={index}
+                        className={openTab === index ? "block" : "hidden"}
+                      >
+                        <div className="mb-8 h-16">
+                          {item.c_shortDescription}
+                        </div>
+
+                        <a
+                          href={`/${item.slug}`}
+                          className=" hover:border-b bg-[#d62211] text-white py-3 px-6 rounded-full font-bold border hover:cursor-pointer hover:border-[#d62211] hover:bg-white hover:text-[#d62211]"
+                        >
+                          Learn more
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
         )}
         <div className="mb-4 bg-[#f7f0e4]">
           {c_licensedStates && (
