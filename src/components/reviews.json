@@ -1,0 +1,56 @@
+[
+  {
+    "entityId": "fp-0274",
+    "Response URL": "https://www.yext.com/s/4132897/reviews#p0=status&p1=1%7C3&p2=includes&p3=&yextReviewId=1376620696",
+    "authorName": "James",
+    "authorEmail": "james@example.com",
+    "review": "Agent withheld important information about discontinuing and reinstating coverage after my vehicle was totaled back in May. The whole process felt intentionally misleading and like I was being gouged.",
+    "date": "1/13/2024",
+    "rating": 1
+  },
+  {
+    "entityId": "fp-0274",
+    "Response URL": "https://www.yext.com/s/4132897/reviews#p0=status&p1=1%7C3&p2=includes&p3=&yextReviewId=1376620683",
+    "authorName": "Rebecca P",
+    "authorEmail": "rebecca.p@example.com",
+    "review": "Devon gave me a great rate for both automobile and homeowners insurance. He made the process easy and quick for me. He provided excellent customer service and was very pleasant, kind and professional. I highly recommend Devon State Farm Insurance.",
+    "date": "1/13/2024",
+    "rating": 5
+  },
+  {
+    "entityId": "fp-0274",
+    "Response URL": "https://www.yext.com/s/4132897/reviews#p0=status&p1=1%7C3&p2=includes&p3=&yextReviewId=1376620705",
+    "authorName": "Samuel S",
+    "authorEmail": "samuel.s@example.com",
+    "review": "Great agent. My quote was very close to my actual monthly payments. I was able to get insurance set up quickly.",
+    "date": "1/13/2024",
+    "rating": 4
+  },
+  {
+    "entityId": "fp-0274",
+    "Response URL": "https://www.yext.com/s/4132897/reviews#p0=status&p1=1%7C3&p2=includes&p3=&yextReviewId=1376620692",
+    "authorName": "John M",
+    "authorEmail": "john.m@example.com",
+    "review": "I have been working with this agency for years now and the customer service has been at the best that someone can find. I have also suggested a few of my best friends and they are now clients of this office!",
+    "date": "1/13/2024",
+    "rating": 5
+  },
+  {
+    "entityId": "fp-0274",
+    "Response URL": "https://www.yext.com/s/4132897/reviews#p0=status&p1=1%7C3&p2=includes&p3=&yextReviewId=1376620690",
+    "authorName": "Paula Donnel",
+    "authorEmail": "paula.donnel@example.com",
+    "review": "I have worked with Devon Smith and his staff for several years now. They are consistently quick to respond to my questions and very friendly. They have made insurance easy to understand a stress-free process.",
+    "date": "1/13/2024",
+    "rating": 4
+  },
+  {
+    "entityId": "fp-0274",
+    "Response URL": "https://www.yext.com/s/4132897/reviews#p0=status&p1=1%7C3&p2=includes&p3=&yextReviewId=1376620548",
+    "authorName": "Art Conway",
+    "authorEmail": "art.conway@example.com",
+    "review": "I have dealt with Devon Smith for insurance for quite a few years. He has taken care of my insurance needs promptly and accurately. When I have questions, he delivers answers quickly.",
+    "date": "1/13/2024",
+    "rating": 5
+  }
+]

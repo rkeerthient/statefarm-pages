@@ -21,7 +21,8 @@ import {
   C_educationDetails,
   C_insuranceProducts,
 } from "../types/financial_professionals";
-
+import reviews from "../components/reviews.json";
+import ReviewsCarousel from "../components/ReviewsCarousel";
 export const config: TemplateConfig = {
   stream: {
     $id: "my-stream-id-1",
@@ -175,6 +176,8 @@ const Location: Template<TemplateRenderProps> = ({
           ? `Split`
           : `Open`;
   };
+  console.log(c_shortBio);
+
   return (
     <>
       <PageLayout>
@@ -227,7 +230,13 @@ const Location: Template<TemplateRenderProps> = ({
               <div className="w-full md:w-2/3 ">
                 <div className="text-xl font-semibold mb-4">About me</div>
                 <div className="px-2">
-                  {c_shortBio ? c_shortBio : `Enter a short bio in the entity`}
+                  {c_shortBio ? (
+                    <LexicalRichText
+                      serializedAST={JSON.stringify(c_shortBio.json)}
+                    />
+                  ) : (
+                    `Enter a short bio in the entity`
+                  )}
                 </div>
 
                 <div className="py-4 px-16 mx-auto my-auto hidden md:block">
@@ -411,6 +420,13 @@ const Location: Template<TemplateRenderProps> = ({
             ></TeamCarousel>
           </div>
         )}
+        <div className="my-4 bg-white">
+          <ReviewsCarousel
+            reviewTitle={"Reviews"}
+            reviewsData={reviews}
+            reviewDescription={"Test Description"}
+          ></ReviewsCarousel>
+        </div>
       </PageLayout>
     </>
   );

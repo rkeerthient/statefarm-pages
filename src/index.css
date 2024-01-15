@@ -94,3 +94,7 @@
 .slick-slider .slick-slide {
   padding: 0 15px;
 }
+
+.reviews .slick-track {
+  @apply !h-[370px] pt-4;
+}
