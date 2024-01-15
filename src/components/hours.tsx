@@ -1,9 +1,8 @@
-
-
 type Hours = {
   title?: string;
   hours: Week;
   children?: React.ReactNode;
+  customclass?: string;
 };
 
 interface Week extends Record<string, any> {
@@ -137,11 +136,17 @@ const DayRow = (props: DayRow) => {
 };
 
 const Hours = (props: Hours) => {
-  const { title, hours } = props;
+  const { title, hours, customclass } = props;
 
   return (
     <>
-      <div className="text-xl font-semibold mb-4">{title}</div>
+      <div
+        className={`font-semibold mb-4 ${
+          customclass ? customclass : `text-xl`
+        }`}
+      >
+        {title}
+      </div>
       <table>
         <thead className="sr-only">
           <tr>

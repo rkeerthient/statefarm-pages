@@ -76,6 +76,7 @@ export const config: TemplateConfig = {
       "c_professionalProduct.c_shortDescription",
       "c_professionalProduct.photoGallery",
       "c_professionalProduct.slug",
+      "c_template",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -156,7 +157,6 @@ const Location: Template<TemplateRenderProps> = ({
     name,
     address,
     c_shortBio,
-    hours,
     mainPhone,
     geocodedCoordinate,
     c_heroBanner,
@@ -176,7 +176,9 @@ const Location: Template<TemplateRenderProps> = ({
     c_officeHours,
     c_professionalSecondaryAddress,
     c_professionalProduct,
+    c_template,
   } = document;
+
   const getType = (item: any) => {
     return item.isClosed
       ? `Closed`
@@ -236,88 +238,193 @@ const Location: Template<TemplateRenderProps> = ({
                 </div>
               </div>
             </div>
-
-            <div className="w-full flex flex-col md:flex-row  mt-4 centered-container">
-              <div className="w-full md:w-2/3 ">
-                <div className="text-xl font-semibold mb-4">About me</div>
-                <div className="px-2">
-                  {c_shortBio ? (
-                    <LexicalRichText
-                      serializedAST={JSON.stringify(c_shortBio.json)}
-                    />
-                  ) : (
-                    `Enter a short bio in the entity`
-                  )}
-                </div>
-                <div className="py-4 px-16 mx-auto my-auto hidden md:block">
-                  {geocodedCoordinate && (
-                    <StaticMap
-                      latitude={geocodedCoordinate.latitude}
-                      longitude={geocodedCoordinate.longitude}
-                    ></StaticMap>
-                  )}
-                </div>
-              </div>
-              <div className="w-full md:w-1/3">
-                <span className=" hidden md:block">
-                  <div className="  gap-y-5">
-                    <div className="text-xl font-semibold mb-4">Address</div>
-
-                    <div className="  gap-y-3">
-                      <div>{address.line1}</div>
-                      {address.line2 && <div>{address.line2}</div>}
-                      <div>
-                        {address.city}, {address.region} {address.postalCode}
-                      </div>
-                    </div>
-                  </div>
-                </span>
-                {c_officeHours && (
-                  <div className="mt-8">
-                    {JSON.stringify(c_officeHours) !== "{}" && (
-                      <Hours title={"I'm available on"} hours={c_officeHours} />
-                    )}
-                    {c_officeHours.holidayHours &&
-                      c_officeHours.holidayHours.length >= 1 && (
-                        <div className="mt-4 text-sm text-[#d62211]">
-                          <div className="text-xl font-semibold mb-4">
-                            Upcoming Holidays
-                          </div>
-                          <div className="flex flex-col ">
-                            {c_officeHours.holidayHours.map(
-                              (item: any, index: any) => {
-                                let type = getType(item);
-
-                                return (
-                                  <div key={index} className="flex gap-4 pr-8">
-                                    <div className="w-1/4">
-                                      {new Date(
-                                        Date.parse(item.date)
-                                      ).toLocaleDateString("en-US")}
-                                    </div>
-                                    {type === "Closed" ||
-                                      (type === "24 Hours" && (
-                                        <div>{type}</div>
-                                      ))}
-
-                                    {type !== "Closed" &&
-                                      type !== "24 Hours" && (
-                                        <div className="flex-1">
-                                          {item.openIntervals[0].start} -{" "}
-                                          {item.openIntervals[0].end}
-                                        </div>
-                                      )}
-                                  </div>
-                                );
-                              }
-                            )}
+            {c_template !== "TEMPLATE_A" ? (
+              <div className="centered-container my-4">
+                <div className="flex w-full gap-8 items-center">
+                  <div className="w-1/3">
+                    <div className="flex flex-col gap-2 ">
+                      <div className="gap-y-8">
+                        <div className="text-xl font-semibold mb-4">
+                          Address
+                        </div>
+                        <div className=" gap-y-3">
+                          <div>{address.line1}</div>
+                          {address.line2 && <div>{address.line2}</div>}
+                          <div>
+                            {address.city}, {address.region}{" "}
+                            {address.postalCode}
                           </div>
                         </div>
-                      )}
+                        <div className="w-fit mt-4 text-sm hover:border-b bg-[#d62211] text-white py-2 px-4 rounded-full font-bold border hover:cursor-pointer hover:border-[#d62211] hover:bg-white hover:text-[#d62211]">
+                          Get Directions
+                        </div>
+                      </div>
+                      <div></div>
+                    </div>
                   </div>
-                )}
+                  <div className="w-1/3">
+                    {geocodedCoordinate && (
+                      <StaticMap
+                        latitude={geocodedCoordinate.latitude}
+                        longitude={geocodedCoordinate.longitude}
+                      ></StaticMap>
+                    )}
+                  </div>
+                  <div className="w-1/3">
+                    {c_officeHours && (
+                      <div className="mt-2 !text-sm">
+                        {JSON.stringify(c_officeHours) !== "{}" && (
+                          <Hours
+                            customclass="text-sm !mb-2"
+                            title={"I'm available on"}
+                            hours={c_officeHours}
+                          />
+                        )}
+                        {c_officeHours.holidayHours &&
+                          c_officeHours.holidayHours.length >= 1 && (
+                            <div className="mt-2 text-sm text-[#d62211]">
+                              <div className=" font-semibold mb-2">
+                                Upcoming Holidays
+                              </div>
+                              <div className="flex flex-col ">
+                                {c_officeHours.holidayHours.map(
+                                  (item: any, index: any) => {
+                                    let type = getType(item);
+
+                                    return (
+                                      <div
+                                        key={index}
+                                        className="flex gap-4 pr-8"
+                                      >
+                                        <div className="w-1/4">
+                                          {new Date(
+                                            Date.parse(item.date)
+                                          ).toLocaleDateString("en-US")}
+                                        </div>
+                                        {type === "Closed" ||
+                                          (type === "24 Hours" && (
+                                            <div>{type}</div>
+                                          ))}
+
+                                        {type !== "Closed" &&
+                                          type !== "24 Hours" && (
+                                            <div className="flex-1">
+                                              {item.openIntervals[0].start} -{" "}
+                                              {item.openIntervals[0].end}
+                                            </div>
+                                          )}
+                                      </div>
+                                    );
+                                  }
+                                )}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 my-4 mb-8">
+                  <div className="text-xl font-semibold ">About me</div>
+                  <div>
+                    {c_shortBio ? (
+                      <LexicalRichText
+                        serializedAST={JSON.stringify(c_shortBio.json)}
+                      />
+                    ) : (
+                      `Enter a short bio in the entity`
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="w-full flex flex-col md:flex-row  mt-4 centered-container">
+                <div className="w-full md:w-2/3 ">
+                  <div className="text-xl font-semibold mb-4">About me</div>
+                  <div>
+                    {c_shortBio ? (
+                      <LexicalRichText
+                        serializedAST={JSON.stringify(c_shortBio.json)}
+                      />
+                    ) : (
+                      `Enter a short bio in the entity`
+                    )}
+                  </div>
+                  <div className="py-4 px-16 mx-auto my-auto hidden md:block">
+                    {geocodedCoordinate && (
+                      <StaticMap
+                        latitude={geocodedCoordinate.latitude}
+                        longitude={geocodedCoordinate.longitude}
+                      ></StaticMap>
+                    )}
+                  </div>
+                </div>
+                <div className="w-full md:w-1/3">
+                  <span className=" hidden md:block">
+                    <div className="gap-y-5">
+                      <div className="text-xl font-semibold mb-4">Address</div>
+                      <div className="  gap-y-3">
+                        <div>{address.line1}</div>
+                        {address.line2 && <div>{address.line2}</div>}
+                        <div>
+                          {address.city}, {address.region} {address.postalCode}
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                  {c_officeHours && (
+                    <div className="mt-8">
+                      {JSON.stringify(c_officeHours) !== "{}" && (
+                        <Hours
+                          title={"I'm available on"}
+                          hours={c_officeHours}
+                        />
+                      )}
+                      {c_officeHours.holidayHours &&
+                        c_officeHours.holidayHours.length >= 1 && (
+                          <div className="mt-4 text-sm text-[#d62211]">
+                            <div className="text-xl font-semibold mb-4">
+                              Upcoming Holidays
+                            </div>
+                            <div className="flex flex-col ">
+                              {c_officeHours.holidayHours.map(
+                                (item: any, index: any) => {
+                                  let type = getType(item);
+
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="flex gap-4 pr-8"
+                                    >
+                                      <div className="w-1/4">
+                                        {new Date(
+                                          Date.parse(item.date)
+                                        ).toLocaleDateString("en-US")}
+                                      </div>
+                                      {type === "Closed" ||
+                                        (type === "24 Hours" && (
+                                          <div>{type}</div>
+                                        ))}
+
+                                      {type !== "Closed" &&
+                                        type !== "24 Hours" && (
+                                          <div className="flex-1">
+                                            {item.openIntervals[0].start} -{" "}
+                                            {item.openIntervals[0].end}
+                                          </div>
+                                        )}
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </div>
+                          </div>
+                        )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
         {c_professionalSecondaryAddress && (
