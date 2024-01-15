@@ -279,21 +279,24 @@ const Location: Template<TemplateRenderProps> = ({
                                 let type = getType(item);
 
                                 return (
-                                  <div
-                                    key={index}
-                                    className="grid grid-cols-3 gap-2 pr-8"
-                                  >
-                                    <div>
+                                  <div key={index} className="flex gap-4 pr-8">
+                                    <div className="w-1/4">
                                       {new Date(
                                         Date.parse(item.date)
                                       ).toLocaleDateString("en-US")}
                                     </div>
-                                    <div>{type}</div>
+                                    {type === "Closed" ||
+                                      (type === "24 Hours" && (
+                                        <div>{type}</div>
+                                      ))}
 
-                                    <div>
-                                      {item.openIntervals[0].start} -{" "}
-                                      {item.openIntervals[0].end}
-                                    </div>
+                                    {type !== "Closed" &&
+                                      type !== "24 Hours" && (
+                                        <div className="flex-1">
+                                          {item.openIntervals[0].start} -{" "}
+                                          {item.openIntervals[0].end}
+                                        </div>
+                                      )}
                                   </div>
                                 );
                               }
