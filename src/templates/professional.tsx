@@ -197,13 +197,15 @@ const Location: Template<TemplateRenderProps> = ({
       <PageLayout>
         <div className="bg-white w-full mb-4">
           <div>
-            {/* <Banner
-              headshot={headshot}
-              img={c_heroBanner.url}
-              name={name}
-              mainPhone={mainPhone}
-              title="STATE FARM® INSURANCE AGENT"
-            ></Banner> */}
+            {c_heroBanner && headshot && (
+              <Banner
+                headshot={headshot}
+                img={c_heroBanner.url}
+                name={name}
+                mainPhone={mainPhone}
+                title="STATE FARM® INSURANCE AGENT"
+              ></Banner>
+            )}
             {c_template !== "TEMPLATE_A" ? (
               <div className="centered-container my-4">
                 <div className="flex w-full gap-8 items-center">
