@@ -78,6 +78,7 @@ export const config: TemplateConfig = {
       "c_professionalProduct.photoGallery",
       "c_professionalProduct.slug",
       "c_template",
+      "c_fonts",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -163,6 +164,7 @@ const Location: Template<TemplateRenderProps> = ({
     c_heroBanner,
     photoGallery,
     headshot,
+    c_fonts,
     c_licensedStates,
     c_fullBiography,
     c_professionalsInsuranceProducts,
@@ -195,7 +197,14 @@ const Location: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout>
-        <div className="bg-white w-full mb-4">
+        <div
+          className="bg-white w-full mb-4"
+          style={{
+            fontFamily:
+              document.c_fonts &&
+              document.c_fonts.toLowerCase().replaceAll(" ", ""),
+          }}
+        >
           <div>
             {c_heroBanner && headshot && (
               <Banner
